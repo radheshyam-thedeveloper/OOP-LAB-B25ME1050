@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+class Shape
+{
+public:
+    virtual double area() = 0;      // pure virtual function
+    virtual ~Shape() {}             // virtual destructor
+};
+
+class Circle : public Shape
+{
+    double radius;
+public:
+    Circle(double r) { radius = r; }
+    double area() override { return 3.14159265 * radius * radius; }
+};
+
+class Rectangle : public Shape
+{
+    double length, width;
+public:
+    Rectangle(double l, double w) { length = l; width = w; }
+    double area() override { return length * width; }
+};
+
+int main()
+{
+    Circle c(3);
+    Rectangle r(4, 5);
+
+    Shape *s1 = &c;     // base class pointers
+    Shape *s2 = &r;
+
+    cout << "Area of circle    = " << s1->area() << endl;
+    cout << "Area of rectangle = " << s2->area() << endl;
+    return 0;
+}
+
